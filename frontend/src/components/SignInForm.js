@@ -1,11 +1,11 @@
 import React,{ useState } from 'react';
 import { useActions } from "../actions";
 
-const SignUpForm = () => {
+const LoginForm = () => {
   const [name,setName] = useState('')
   const [password,setPassword] = useState('')
-  const [ signup ] = useActions()
-  const submitSignUp = (e) => {
+  const [ signup,login ] = useActions()
+  const submitSignup = (e) => {
     e.preventDefault()
     const dispatch = {
       name: name,
@@ -19,10 +19,10 @@ const SignUpForm = () => {
         新規登録フォーム
         <input placeholder={'名前'} value={name} onChange={(e) => setName(e.target.value)} />
         <input placeholder={'パスワード'} value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button onClick={submitSignUp}>登録</button>
+        <button onClick={submitSignup}>登録</button>
       </form>
     </>
   );
 }
 
-export default SignUpForm;
+export default LoginForm;

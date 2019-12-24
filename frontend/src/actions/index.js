@@ -22,5 +22,20 @@ export const useActions = () => {
     })
   }
 
-  return [ signup ]
+  const login = (data) => {
+    console.log(data)
+    axios.post(`${ROOT_URL}/auth/login`,data)
+    .then((result) => {
+      console.log("success:",result)
+      // dispatch({
+      //   type: AUTH,
+      //   current_user
+      // })
+    })
+    .catch(err => {
+      alert(err)
+    })
+  }
+
+  return [ signup,login ]
 }
