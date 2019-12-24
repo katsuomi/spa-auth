@@ -1,7 +1,7 @@
-class User < ApplicationRecord
-  has_secure_password
+# frozen_string_literal: true
 
-  validates :password, length: { in: 6..20 }
-  validates :name, uniqueness: { case_sensitive: true }
-  validates_format_of [:name, :password], :with => /\A[a-zA-Z0-9]+\z/
+class User < ActiveRecord::Base
+  # Include default devise modules.
+  devise :database_authenticatable, :registerable,:recoverable, :rememberable, :trackable, :validatable # :confirmable, :omniauthable
+  include DeviseTokenAuth::Concerns::User
 end

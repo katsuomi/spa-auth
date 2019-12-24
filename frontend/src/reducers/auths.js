@@ -1,16 +1,16 @@
 import {
-  SIGNUP,
+  AUTH,
 } from '../actions';
 
 const initialState = { 
-  current_user: {}
+  currentUser: {}
 }
 
 const auths = (state = initialState, action) => {
   switch(action.type) {
-    case SIGNUP:
+    case AUTH:
       return {
-        current_user: action.current_user
+        currentUser: action.currentUser
       }
     default:
       return state

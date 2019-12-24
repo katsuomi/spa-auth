@@ -1,13 +1,22 @@
 import React from 'react';
-import SignUpForm from './LoginForm'
-import LoginForm from './LoginForm'
+import { useSelector } from 'react-redux';
+import SignUpForm from './SignUpForm';
+import LoginForm from './LoginForm';
 
 const App = () => {
+  const currentUser = useSelector(state => state.auths.currentUser);
+  const isLogin = currentUser.email === undefined ? false : true;
   return (
     <>
-      <SignUpForm />
-      <br/>
-      <LoginForm />
+      {isLogin?
+        <p>hi,{currentUser.email}</p>
+      :
+        <>
+          <SignUpForm />
+          <br/>
+          <LoginForm />
+        </>     
+      }
     </>
   );
 }

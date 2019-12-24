@@ -19,18 +19,14 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module RailsCookie
+module Backend
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
+    config.api_only = true
     config.load_defaults 6.0
-
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins "http://localhost:3002"
-        resource "*",
-          headers: :any,
-          methods: [:get, :post, :options, :head],
-          credentials: true
+        origins 'http://localhost:3003'
+        resource '*', :headers => :any, :methods => [:get, :post, :options], :expose => ['access-token']
       end
     end
   end

@@ -1,25 +1,25 @@
-import React,{ useState } from 'react';
+import React,{ useState,useEffect } from 'react';
 import { useActions } from "../actions";
 
 const SignUpForm = () => {
-  const [name,setName] = useState('')
+  const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const [ signup,login,getMessage ] = useActions()
-  const submitLogin = (e) => {
+  const submitSignUp = (e) => {
     e.preventDefault()
     const dispatch = {
-      name: name,
+      email: email,
       password: password
     }
-    login(dispatch)
+    signup(dispatch)
   }
   return (
     <>
       <form>
-        ログインフォーム
-        <input placeholder={'名前'} value={name} onChange={(e) => setName(e.target.value)} />
+        新規登録フォーム
+        <input placeholder={'メールアドレス'} value={email} onChange={(e) => setEmail(e.target.value)} />
         <input placeholder={'パスワード'} value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button onClick={submitLogin}>登録</button>
+        <button onClick={submitSignUp}>登録</button>
       </form>
     </>
   );
