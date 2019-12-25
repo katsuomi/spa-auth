@@ -7,12 +7,13 @@ const ROOT_URL = "http://localhost:3000/api"
 export const useActions = () => {
   const dispatch = useDispatch();
   const signup = (data) => {
-    console.log(data)
     axios.post(`${ROOT_URL}/auth/`,data)
     .then((result) => {
       console.log("success:",result)
       const currentUser = result.data.data
       currentUser.accessToken = result.headers['access-token']
+      currentUser.uId = result.headers['uid']
+      currentUser.client = result.headers['client']
       dispatch({
         type: AUTH,
         currentUser
@@ -24,14 +25,17 @@ export const useActions = () => {
   }
 
   const login = (data) => {
-    console.log(data)
     axios.post(`${ROOT_URL}/auth/sign_in`,data)
     .then((result) => {
       console.log("success:",result)
-      // dispatch({
-      //   type: AUTH,
-      //   current_user
-      // })
+      const currentUser = result.data.data
+      currentUser.accessToken = result.headers['access-token']
+      currentUser.uId = result.headers['uid']
+      currentUser.client = result.headers['client']
+      dispatch({
+        type: AUTH,
+        currentUser
+      })
     })
     .catch(err => {
       alert(err)
