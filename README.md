@@ -1,8 +1,3 @@
-# spa-auth
-
-this repository is represent cookie,session login system.
-
-
 ## Cookie
 
 An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user's web browser. 
